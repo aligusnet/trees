@@ -12,3 +12,8 @@ Debug
 Release
 #
 *~
+Makefile
+#CMake
+CMake*
+cmake*
+!CMakeLists.txt
