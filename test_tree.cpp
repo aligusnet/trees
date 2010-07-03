@@ -46,10 +46,17 @@ struct AppendFunc
   }
 };
 
-BOOST_FIXTURE_TEST_CASE(testPreorder1, Fixture)
+BOOST_FIXTURE_TEST_CASE(testOBPreorder1, Fixture)
 {
   AppendFunc func;
   preorder(root, func);
+  BOOST_CHECK(std::equal(func.lst_data.begin(), func.lst_data.end(), lst_preorder.begin()));
+}
+
+BOOST_FIXTURE_TEST_CASE(testOBPreorder2, Fixture)
+{
+  AppendFunc func;
+  preorder2(root, func);
   BOOST_CHECK(std::equal(func.lst_data.begin(), func.lst_data.end(), lst_preorder.begin()));
 }
 
