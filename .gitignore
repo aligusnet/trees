@@ -1,7 +1,14 @@
+#Mac OS X settings
+.DS_Store
+build
+*.1
+*.xcodeproj
+#Windows settings
 *.vcproj*
 *.ncb
 *.suo
 *.sln
 Debug
 Release
+#
 *~
