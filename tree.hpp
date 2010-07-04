@@ -56,13 +56,13 @@ TreeNode<T> *append_child(TreeNode<T> *node, const T &data)
 }
 
 template <typename T, typename Func>
-void preorder(TreeNode<T> *root, Func op)
+void preorder_recursive(TreeNode<T> *root, Func op)
 {
 	op(root->data);
 	TreeNode<T> *child = root->left_child;
 	while(child)
 	{
-		preorder(child, op);
+		preorder_recursive(child, op);
 		child = child->right_sibling;
 	}
 }
@@ -88,3 +88,52 @@ void preorder2(TreeNode<T> *root, Func op)
 	}
 }
 
+template <typename T, typename Func>
+void preorder3(TreeNode<T> *root, Func op)
+{
+	Stack<TreeNode<T> *> stack;
+	TreeNode<T> *node = root;
+	while (true)
+	{
+		if (node != NULL)
+		{
+			op(node->data);
+			stack.push(node);
+			node = node->left_child;
+		}
+		else if (!stack.empty()) 
+		{
+			node = stack.top();
+			node = node->right_sibling;
+			stack.pop();
+		}
+		else
+		{
+			return;
+		}
+	}
+}
+
+template <typename T, typename Func>
+void postorder_recursive(TreeNode<T> *root, Func op)
+{
+	TreeNode<T> *node = root->left_child;
+	while (node)
+	{
+		postorder_recursive(node, op);
+		node = node->right_sibling;
+	}
+	op(root->data);
+}
+
+template <typename T, typename Func>
+void inorder_recursive(TreeNode<T> *root, Func op)
+{
+	TreeNode<T> *node = root->left_child;
+	while (node)
+	{
+		inorder_recursive(node, op);
+		op(root->data);
+		node = node->right_sibling;
+	}
+}
